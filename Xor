@@ -1,0 +1,17 @@
+Inputs: inl, in2;
+Outputs: out;
+
+// 1. specify the components you want to use here
+
+Parts:
+Notl NOT, Not2 NOT, Andl AND, And2 AND, Or OR
+
+>
+
+// 2. wire them up
+Wires:
+inl -> Notl.in, in2 -> Not2.in,
+Notl.out -> Andl.inl, in2 -> Andl.in2, Not2.out -> And2.in1,
+inl -> And2.in2,
+Andl.out -> Or.inl, And2.out -> Or.in2,
+Or.out -> out
