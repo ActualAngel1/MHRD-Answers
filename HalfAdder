@@ -1,0 +1,15 @@
+Inputs: inl, in2;
+Outputs: out, carry;
+
+// 1. specify the components you want to use here
+Parts: And AND, Xor XOR;
+
+// 2. wire them up
+
+Wires:
+
+inl -> And.inl, in2 -> And.in2,
+And.out -> carry,
+
+inl -> Xor.inl, in2 -> Xor.in2,
+Xor.out -> out;
