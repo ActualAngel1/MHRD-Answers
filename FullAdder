@@ -1,0 +1,35 @@
+Inputs: carryIn, inl, in23
+Outputs: out, carryOut;
+
+// 1. specify the components you want to use here
+Parts:
+//Part 1:
+Orl OR, Or2 OR, Or3 OR, And1 AND, Xor XOR, Not NOT, Not1 NOT,
+Xorl XOR, And2 AND,
+andl AND, and2 AND, and3 AND
+
+;
+
+// 2. wire them up
+
+Wires:
+
+inl -> andl.inl, in2 -> andl.in2,
+
+inl -> and2.inl, carryIn -> and2.in2,
+
+in2 -> and3.inl, carryIn -> and3.in2,
+
+andl.out -> Orl.inl, and2.out -> Orl.in2,
+
+Orl.out -> Or2.inl, and3.out -> Or2.in2, Or2.out -> carryOut,
+
+carryIn -> Andl.inl, inl -> Xor.inl, in2 -> Xor.in2,
+Xor.out -> Not.in, Not.out -> Andl.in2, //1
+
+carryIn -> Notl.in, inl -> Xorl.inl, in2 -> Xorl.in2,
+Notl.out -> And2.inl, Xorl.out -> And2.in2, //2
+
+Andl.out -> Or3.inl, And2.out -> Or3.in2,
+Or3.out -> out
+;
