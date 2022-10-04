@@ -1,0 +1,22 @@
+Inputs: in[16], load, address[2];
+Outputs: out[16];
+
+// 1. specify the components you want to use here
+Parts: Muxl MUX4W16B, Regl REGISTER16B, Reg2 REGISTERI16B,
+Reg3 REGISTERI6B, Reg4 REGISTERI6B, Demux DEMUX4W
+
+ie wire them up
+Wires:
+address -> Demux.sel, load -> Demux.in,
+
+in -> Regl.in, Demux.outl -> Regl.load,
+in -> Reg2.in, Demux.out2 -> Reg2.load,
+in -> Reg3.in, Demux.out3 -> Reg3.load,
+in -> Reg4.in, Demux.out4 -> Reg4.load,
+
+Regl.out -> Muxl.inl, Reg2.out -> Muxl.in2,
+Reg3.out -> Muxl.in3, Reg4.out -> Muxl.in4,
+address -> Muxl.sel,
+
+Muxl.out -> out
+;
