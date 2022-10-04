@@ -1,0 +1,24 @@
+Inputs: in[4], load, reset;
+Outputs: out[4];
+
+// 1. specify the components you want to use here
+
+Parts: Demux DEMUX4W, Reg REGISTER4B, Regl REGISTER4B,
+Reg2 REGISTER4B, Reg3 REGISTER4B, Mux MUX4W16B, Or OR,
+Demuxl DEMUX, Add ADDER4B, Not NOT;
+
+// 2. wire them up
+Wires:
+
+// Add doesnt work because i need to figure out reg location in the code
+Reg.out -> Add.inl, 0 -> Add.carryIn, 0001 -> Add.in2,
+
+load -> Mux.sel[1], reset -> Mux.sel[2], 90000000000000000 -> Mux.in4,
+0000000000000000 -> Mux.in3, in -> Mux.in2[1:4],
+
+000000000000 -> Mux.in2[5:16], Add.out -> Mux.in1[1:4],
+
+000000000000 -> Mux.ini[5:16],
+
+Mux.out[1:4] -> Reg.in, 1 -> Reg.load, Reg.out -> out
+;
