@@ -1,0 +1,21 @@
+ 
+
+Inputs: in, sel;
+Outputs: outl, out2;
+
+// 1. specify the components you want to use here
+Parts:
+Andl AND, And2 AND, Not NOT;
+
+// 2. wire them up
+
+Wires:
+
+sel -> Andl.inl, in -> Andl.in2,
+Andl.out -> out2,
+
+sel -> Not.in,
+Not.out -> And2.inl, in -> And2.in2,
+And2.out -> outl
+
+;
