@@ -1,50 +1,8 @@
-Inputs: in1[4], in2[4], sel;
-Outputs: out[4];
-
-// 1. specify the components you want to use here
-Parts: Muxl
-
-// 2. wire them up
-Wires:
-ini[1] -> Muxl.inl,
-
-ini[2] -> Mux2.inl,
-ini[3] -> Mux3.inl,
-ini[4] -> Mux4.inl,
-
-Muxl.
-Mux2.
-Mux3.
-Mux4.
-
-out ->
-out ->
-out ->
-out ->
-
-MUX, Mux2 MUX, Mux3 MUX,
-in2[1] -> Muxl.
-in2[2] -> Mux2.
-in2[3] -> Mux3.
-in2[4] -> Mux4.
-
-out[1],
-out[2],
-out[3],
-out[4]
-
-Mux4 MUX;
-in2, sel ->
-in2, sel ->
-in2, sel ->
-in2, sel ->
-
-Muxl.
-Mux2.
-Mux3.
-Mux4.
-
-sel,
-sel,
-sel,
-sel,
+// Inputs: ini[4], in2[4], sel; Outputs: out[4];
+// Parts: Muxi MUX, Mux2 MUX, Mux3 MUX, Mux4 MUX;
+// 2. wire them up Wires: 
+in1[1] -> Muxl.in1, in2[1] -> Muxl.in2, sel -> Muxl.sel, 
+in1[2] -> Mux2.in1,-> Mux2.in2, sel -> Mux2.sel, in1[3] -> Mux3.in1,-> Mux3.in2, 
+sel -> Mux3.sel, in1[4] -> Mux4.in1, in2[4] -> Mux4.in2, sel -> Mux4.sel,
+Muxl.out -> out[1], Mux2.out -> out[2], Mux3.out -> out[3] Mux4.out -> out[4]
+;
