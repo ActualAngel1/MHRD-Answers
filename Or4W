@@ -1,0 +1,25 @@
+ 
+
+Inputs: inl[4], in2[4];
+Outputs: out[4];
+
+// 1. specify the components you want to use here
+Parts:
+And1 AND, And2 AND, And3 AND, And4 AND
+
+>
+
+// 2. wire them up
+
+Wires:
+
+ini[1] -> Andl.inl, in2[1] -> And1l.in2,
+ini[2] -> And2.inl, in2[2] -> And2.in2,
+ini[3] -> And3.inl, in2[3] -> And3.in2,
+inl[4] -> And4.inl, in2[4] -> And4.in2,
+
+Andl.out -> out[1], And2.out -> out[2],
+And3.out -> out[3], And4.out -> out[4]
+
+>
+
