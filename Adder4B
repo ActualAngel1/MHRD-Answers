@@ -1,0 +1,8 @@
+Inputs: in1[4], in2[4], carryin; Outputs: out[4], carryout;
+Parts: Full1 FULLADDER, Full2 FULLADDER, Full3 FULLADDER, Full4 FULLADDER;
+Wires:
+    ini[1] -> Fulli.in1, in2[1] -> Fulli.in2, carryIn -> Full1.carryIn, Full1.out -> out[1], in1[2] -> Full2.in1, in2[2] -> Full2.in2, 
+    Full1.carryout -> Full2.carryin, Full2.out -> out[2],
+    in1[3] -> Full3.in1, in2[3] -> Full3.in2, Full2.carryout -> Full3.carryin, Full3.out -> out[3],
+    in1[4] -> Full4.in1, in2[4] -> Full4.in2, Full3.carryout -> Full4.carryin, Fulī4.out -> out[4], Full4.carryout -> carryout
+;
