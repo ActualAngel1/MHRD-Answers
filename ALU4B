@@ -1,0 +1,34 @@
+Inputs: in1[4], in2[4], opCode[4];
+Outputs: out[4], negative, zero;
+
+// 1. specify the components you want to use here
+
+Parts:
+
+Muxl MUX4B, Mux2 MUX4B, Mux3 MUX4B, Mux4 MUX4B, Not4B NOT4B, Not4B4 NOT4B,
+Not4B3 NOT4B, Add ADDER4B, Nand NAND4B, Not NOT, Or OR4W;
+
+// 2. wire them up
+Wires:
+
+//opCode[4]
+opCode[4] -> Mux4.sel, inl -> Mux4.inl, inl -> Not4B4.in,
+Not4B4.out -> Mux4.in2,
+
+//opCode[3]
+opCode[3] -> Mux3.sel, in2 -> Mux3.inl, in2 -> Not4B3.in,
+Not4B3.out -> Mux3.in2,
+
+//opCode
+opCode[2] -> Mux2.sel, Mux4.out -> Add.inl, Mux3.out -> Add.in2, Add.out ->
+Mux2.inl, Mux4.out -> Nand.inl, Mux3.out -> Nand.in2, Nand.out -> Mux2.in2,
+
+//opCode[1]
+opCode[1] -> Muxl.sel, Mux2.out -> Not4B.in, Not4B.out -> Muxl.in2,
+Mux2.out -> Muxl.inl, Muxl.out -> out,
+
+//Zero:
+Muxl.out -> Or.in, Or.out -> Not.in, Not.out -> zero,
+
+//Negative:
+Muxl.out[4] -> negative
